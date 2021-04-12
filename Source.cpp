@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 int main()
 {
+    //jel vidis ovaj komentar
     sf::RenderWindow prozor(sf::VideoMode(400, 400), "Za mog brata Zaklopcinca!",sf::Style::Close | sf::Style::Resize);
     sf::RectangleShape pravougaonik(sf::Vector2f(100.0f,100.0f));
     pravougaonik.setFillColor(sf::Color::Red);
@@ -40,13 +41,13 @@ int main()
         {
             pravougaonik.move(0.0f, 0.1f);
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
-        {
-            pravougaonik.setFillColor(sf::Color::Red);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
             pravougaonik.setFillColor(sf::Color::Green);
+        }
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+        {
+            pravougaonik.setFillColor(sf::Color::Red);
         }
         prozor.draw(pravougaonik);
         prozor.display();
