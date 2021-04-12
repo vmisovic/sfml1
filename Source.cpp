@@ -32,6 +32,22 @@ int main()
         {
             pravougaonik.move(0.1f, 0.0f);
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+        {
+            pravougaonik.move(0.0f, -0.1f);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+        {
+            pravougaonik.move(0.0f, 0.1f);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+        {
+            pravougaonik.setFillColor(sf::Color::Red);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
+        {
+            pravougaonik.setFillColor(sf::Color::Green);
+        }
         prozor.draw(pravougaonik);
         prozor.display();
         prozor.clear();
