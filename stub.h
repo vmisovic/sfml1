@@ -1,4 +1,3 @@
-#pragma once
 #include <SFML\Graphics.hpp>
 class stub
 {
@@ -7,5 +6,5 @@ class stub
 public:
     stub();
     void podesi(int gornja_duz, int donja_duzina);
-    void ispis(int x, sf::RenderWindow& prozor);
+    void crtaj(int x, sf::RenderWindow& prozor);
 };

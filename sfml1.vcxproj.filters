@@ -21,9 +21,15 @@
     <ClCompile Include="stub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ptica.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stub.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ptica.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
