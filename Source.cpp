@@ -16,7 +16,7 @@ int main()
         std::cout << "Cannot load image2" << std::endl;
     sprite1.setTexture(texture1);
     sprite2.setTexture(texture2);
-    ptica nova;
+    ptica nova(&prozor);
     int frejm=0;
     while (prozor.isOpen())
     {
@@ -43,20 +43,15 @@ int main()
                 
             }
         }
-        /*for (int i = 0; i < 32;i++)
-        {
-            for (int j = 0; j < 32;j++)
-                image2.setPixel(i, j, sf::Color::Transparent);
-        }*/
         prozor.draw(sprite1);
-        stub s[10];
-        s[1].podesi(100, 200);
-        s[2].podesi(180, 120);
-        s[0].crtaj(100, prozor);
-        s[1].crtaj(200, prozor);
-        s[2].crtaj(300, prozor);
+        stub s1(&prozor),s2(&prozor),s3(&prozor);
+        s1.podesi(100, 200);
+        s2.podesi(180, 120);
+        s3.crtaj(100);
+        s1.crtaj(200);
+        s2.crtaj(300);
         nova.osvezi(frejm);
-        nova.crtaj(sprite2, prozor);
+        nova.crtaj(sprite2);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         {
             pravougaonik.move(-0.1f, 0.0f);

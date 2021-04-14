@@ -1,4 +1,8 @@
 #include "ptica.h"
+ptica::ptica(sf::RenderWindow* prozor1)
+{
+	prozor = prozor1;
+}
 
 void ptica::osvezi(int trenutni_frejm)
 {
@@ -20,10 +24,12 @@ void ptica::osvezi(int trenutni_frejm)
 	}
 }
 
-void ptica::crtaj(sf::Sprite& sprite,sf::RenderWindow& prozor)
+void ptica::crtaj(sf::Sprite& sprite)
 {
 	sprite.setPosition(100.0f, visina);
-	prozor.draw(sprite);
+	sprite.rotate(-(prozor->getSize().y / 2 - visina)*0.1);
+	prozor->draw(sprite);
+	sprite.rotate((prozor->getSize().y / 2 - visina)*0.1);
 }
 
 void ptica::skok()

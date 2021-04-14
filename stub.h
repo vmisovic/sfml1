@@ -3,8 +3,9 @@ class stub
 {
     int donja, gornja, debljina;
     sf::Color boja1, boja2;
+    sf::RenderWindow* prozor;
 public:
-    stub();
+    stub(sf::RenderWindow* prozor1);
     void podesi(int gornja_duz, int donja_duzina);
-    void crtaj(int x, sf::RenderWindow& prozor);
+    void crtaj(int x);
 };
