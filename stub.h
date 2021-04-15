@@ -1,11 +1,13 @@
 #include <SFML\Graphics.hpp>
 class stub
 {
-    int donja, gornja, debljina;
-    sf::Color boja1, boja2;
+    float visina, otvor, debljina;
+    sf::Color boja[2];
     sf::RenderWindow* prozor;
+    sf::RectangleShape pravougaonik[4];
 public:
-    stub(sf::RenderWindow* prozor1);
-    void podesi(int gornja_duz, int donja_duzina);
+    stub();
+    void povezi_grafiku(sf::RenderWindow* prozor1);
+    void podesi(int visina, int otvor);
     void crtaj(int x);
 };

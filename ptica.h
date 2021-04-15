@@ -3,15 +3,15 @@
 class ptica
 {
 	float visina=280;
-	float brzina = -10;
-	float gravitacija = 1.5;
-	int prethodni_frejm=0;
-	float brzina_skoka = -15.0f;
+	float brzina = -2.0f;
+	float gravitacija = 0.1f;
+	float brzina_skoka = -3.5f;
+	sf::Sprite* sprite;
 	sf::RenderWindow* prozor;
 public:
-	ptica(sf::RenderWindow* prozor1);
-	void osvezi(int trenutni_frejm);
-	void crtaj(sf::Sprite& sprite);
+	ptica(sf::Sprite* sprite1,sf::RenderWindow* prozor1);
+	void osvezi();
+	void crtaj();
 	void skok();
 };
 

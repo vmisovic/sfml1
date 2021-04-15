@@ -1,43 +1,37 @@
 #include "stub.h"
-stub::stub(sf::RenderWindow* prozor1)
+stub::stub()
 {
-    gornja = 200;
-    donja = 200;
+    otvor = 50.f;
+    visina = 25.0f;
     debljina = 40;
-    boja1 = sf::Color::Yellow;
-    boja2 = sf::Color::Green;
+    boja[0] = sf::Color::Yellow;
+    boja[1] = sf::Color::Green;
+    for (int i = 0; i < 4; i++)
+    {
+        pravougaonik[i].setFillColor(boja[i%2]);
+        pravougaonik[i].setOutlineThickness(2);
+        pravougaonik[i].setOutlineColor(sf::Color::Black);
+    }
+}
+void stub::povezi_grafiku(sf::RenderWindow* prozor1)
+{
     this->prozor = prozor1;
 }
-void stub::podesi(int gornja_duzina, int donja_duzina)
+void stub::podesi(int visina1, int otvor1)
 {
-    gornja = gornja_duzina;
-    donja = donja_duzina;
+    otvor = otvor1;
+    visina = visina1;
 }
 void stub::crtaj(int x)
 {
-    sf::RectangleShape pravougaonik1(sf::Vector2f(debljina, gornja));
-    sf::RectangleShape pravougaonik2(sf::Vector2f(debljina, donja));
-    sf::RectangleShape pravougaonik3(sf::Vector2f(debljina*1.2f, debljina));
-    sf::RectangleShape pravougaonik4(sf::Vector2f(debljina*1.2f, debljina));
-    pravougaonik1.setPosition(x, 0.0f);
-    pravougaonik2.setPosition(x, (prozor->getSize().y - donja));
-    pravougaonik3.setPosition(x - debljina * 0.1f, gornja - debljina);
-    pravougaonik4.setPosition(x - debljina * 0.1f, (prozor->getSize().y - donja));
-    pravougaonik1.setFillColor(boja1);
-    pravougaonik2.setFillColor(boja1);
-    pravougaonik3.setFillColor(boja2);
-    pravougaonik4.setFillColor(boja2);
-    pravougaonik1.setOutlineThickness(2);
-    pravougaonik2.setOutlineThickness(2);
-    pravougaonik3.setOutlineThickness(2);
-    pravougaonik4.setOutlineThickness(2);
-    pravougaonik1.setOutlineColor(sf::Color::Black);
-    pravougaonik1.setOutlineColor(sf::Color::Black);
-    pravougaonik2.setOutlineColor(sf::Color::Black);
-    pravougaonik3.setOutlineColor(sf::Color::Black);
-    pravougaonik4.setOutlineColor(sf::Color::Black);
-    prozor->draw(pravougaonik1);
-    prozor->draw(pravougaonik2);
-    prozor->draw(pravougaonik3);
-    prozor->draw(pravougaonik4);
+    pravougaonik[0].setSize(sf::Vector2f(debljina, visina / 100.f * prozor->getSize().y));
+    pravougaonik[1].setSize(sf::Vector2f(debljina + 8, debljina));
+    pravougaonik[2].setSize(sf::Vector2f(debljina, (100.f - visina - otvor) / 100.f * prozor->getSize().y));
+    pravougaonik[3].setSize(sf::Vector2f(debljina + 8, debljina));
+    pravougaonik[0].setPosition(sf::Vector2f(x, 0.0f));
+    pravougaonik[1].setPosition(sf::Vector2f(x - 4, visina / 100.f * prozor->getSize().y - debljina));
+    pravougaonik[2].setPosition(sf::Vector2f(x, (visina + otvor) / 100.f * prozor->getSize().y));
+    pravougaonik[3].setPosition(sf::Vector2f(x - 4, (visina + otvor) / 100.f * prozor->getSize().y));
+    for(int i=0;i<4;i++)
+        prozor->draw(pravougaonik[i]);
 }
