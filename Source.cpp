@@ -14,6 +14,7 @@ int main()
         std::cout << "Cannot load image1"<<std::endl;
     if (!(texture2.loadFromFile("ptica.png")))
         std::cout << "Cannot load image2" << std::endl;
+    texture2.getSize().x;
     sprite1.setTexture(texture1);
     sprite2.setTexture(texture2);
     ptica pticica(&sprite2,&prozor);//objekat klase ptica nazvan je pticica
