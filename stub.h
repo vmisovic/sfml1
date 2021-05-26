@@ -2,12 +2,15 @@
 class stub
 {
     float visina, otvor, debljina;
+    int x,dx;
     sf::Color boja[2];
     sf::RenderWindow* prozor;
     sf::RectangleShape pravougaonik[4];
 public:
     stub();
-    void povezi_grafiku(sf::RenderWindow* prozor1);
-    void podesi(int visina, int otvor);
-    void crtaj(int x);
+    void povezi_grafiku(sf::RenderWindow* prozor1,int x1);
+    void podesi(double visina, double otvor);
+    void crtaj();
+    void pomeri();
+    bool provera(sf::Vector2u kordinate,sf::Vector2u dimenzije);
 };

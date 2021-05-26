@@ -4,8 +4,10 @@
 #include "ptica.h"
 int main()
 {
-    sf::RenderWindow prozor(sf::VideoMode(800, 600), "Za mog brata Zaklopcinca!",sf::Style::Close | sf::Style::Resize);
+    sf::RenderWindow prozor(sf::VideoMode(800, 600), "fljepi brd!",sf::Style::Close);
     prozor.setFramerateLimit(120);
+
+
     sf::Texture texture1,texture2;
     sf::Sprite sprite1,sprite2;
     if (!(texture1.loadFromFile("pozadina.png")))
@@ -14,7 +16,20 @@ int main()
         std::cout << "Cannot load image2" << std::endl;
     sprite1.setTexture(texture1);
     sprite2.setTexture(texture2);
-    ptica pticica(&sprite2,&prozor);
+    ptica pticica(&sprite2,&prozor);//objekat klase ptica nazvan je pticica
+
+    bool zivot;//da li je pricica jos uvek ziva
+    stub s[5];//deklarisemo pet stubova (posto ce se vrteti u krug, nije nam potrebno vise) random imaju random visinu
+    for (int i = 0; i < 5; i++)
+    {
+        s[i].povezi_grafiku(&prozor, prozor.getSize().x + i * 200);
+        /*
+        povezivanje grafike, i inicijalizacija x kordinate
+        na pocetku se svi stubovi nalaze van prozora kako bi dali igracu nekoliko sekundi prednsti
+        nalaze se na istom rastojanju od 200px
+        */
+    }
+
     while (prozor.isOpen())
     {
         sf::Event evnt;
@@ -26,9 +41,6 @@ int main()
             case sf::Event::Closed:
                 prozor.close();
                 break;
-            case sf::Event::Resized:
-                std::cout << evnt.size.width<< " "<<evnt.size.height<<std::endl;
-                break;
             case sf::Event::TextEntered:
                 if (evnt.text.unicode < 128)
                 {
@@ -39,17 +51,19 @@ int main()
                 
             }
         }
-        prozor.draw(sprite1);
-        stub s[10];
-        for (int i = 0; i < 10; i++)
-            s[i].povezi_grafiku(&prozor);
-        s[1].podesi(50, 10);
-        s[2].podesi(10,80);
-        s[3].crtaj(100);
-        s[1].crtaj(200);
-        s[2].crtaj(300);
-        pticica.osvezi();
-        pticica.crtaj();
+        prozor.draw(sprite1);//pozadina se crta na pocetku
+
+        for (int i = 0; i < 5; i++)//pet stubova koji se vrte u krug i iscrtavanje
+        {
+            s[i].crtaj();
+            s[i].pomeri();
+            s[i].provera(pticica.getPosition(),pticica.getSize());
+        }
+
+        pticica.osvezi();//gravitacija (ptica ubrzava na dole)
+        pticica.crtaj();//iscrtavanje ptice
+
+        //iscrtavanje frejma i potom njegovo brisanje
         prozor.display();
         prozor.clear();
     }

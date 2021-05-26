@@ -27,7 +27,7 @@ void ptica::osvezi()
 
 void ptica::crtaj()
 {
-	sprite->setPosition(100.0f, visina);
+	sprite->setPosition(x, visina);
 	if(visina > 20)
 	sprite->rotate(brzina * 5.0f);
 	prozor->draw(*sprite);
@@ -38,4 +38,14 @@ void ptica::crtaj()
 void ptica::skok()
 {
 	brzina = brzina_skoka;
+}
+
+sf::Vector2u ptica::getSize()
+{
+	return sf::Vector2u(100,71);
+}
+
+sf::Vector2u ptica::getPosition()
+{
+	return sf::Vector2u(x,visina);
 }
