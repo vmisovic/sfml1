@@ -2,7 +2,7 @@
 stub::stub()
 {
     otvor = 50.f;
-    visina = rand() % 50;
+    visina = rand() % 40 + 5.f;
     debljina = 40;
     dx = 1;
     boja[0] = sf::Color::Yellow;
@@ -44,12 +44,18 @@ void stub::pomeri()
     if (x <= -50)
     {
         x = prozor->getSize().x + 150;
-        podesi(rand()%50, 50.f);
+        podesi(rand()%40+5.f, 50.f);
     }
 }
 
-bool stub::provera(sf::Vector2u kordinate, sf::Vector2u dimenzije)
+bool stub::provera(sf::Vector2f kordinate, sf::Vector2f dimenzije,double ugao)
 {
-
-    return 0;
+    if ((x > kordinate.x && x < kordinate.x + dimenzije.x) || (x + debljina > kordinate.x && x + debljina < kordinate.x + dimenzije.x))
+    {
+        if ((kordinate.y < (visina * prozor->getSize().y / 100.f)))
+            return 0;
+        if ((kordinate.y + dimenzije.y > ((visina + otvor) * prozor->getSize().y / 100.f)))
+            return 0;
+    }
+    return 1;
 }

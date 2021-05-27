@@ -12,5 +12,5 @@ public:
     void podesi(double visina, double otvor);
     void crtaj();
     void pomeri();
-    bool provera(sf::Vector2u kordinate,sf::Vector2u dimenzije);
+    bool provera(sf::Vector2f kordinate,sf::Vector2f dimenzije,double ugao);
 };

@@ -19,7 +19,7 @@ int main()
     sprite2.setTexture(texture2);
     ptica pticica(&sprite2,&prozor);//objekat klase ptica nazvan je pticica
 
-    bool zivot;//da li je pricica jos uvek ziva
+    bool zivot=1;//da li je pricica jos uvek ziva
     stub s[5];//deklarisemo pet stubova (posto ce se vrteti u krug, nije nam potrebno vise) random imaju random visinu
     for (int i = 0; i < 5; i++)
     {
@@ -52,21 +52,31 @@ int main()
                 
             }
         }
-        prozor.draw(sprite1);//pozadina se crta na pocetku
-
-        for (int i = 0; i < 5; i++)//pet stubova koji se vrte u krug i iscrtavanje
+        if (zivot)
         {
-            s[i].crtaj();
-            s[i].pomeri();
-            s[i].provera(pticica.getPosition(),pticica.getSize());
+            prozor.draw(sprite1);//pozadina se crta na pocetku
+
+            for (int i = 0; i < 5; i++)//pet stubova koji se vrte u krug i iscrtavanje
+            {
+                s[i].crtaj();
+                if(s[i].provera(pticica.getPosition(), pticica.getSize(),pticica.ugao())==0)
+                    zivot = 0;
+                if (zivot == 0)
+                {
+                    sf::RectangleShape k;
+                    k.setSize(sf::Vector2f(50, 50));
+                    prozor.draw(k);
+                }
+                s[i].pomeri();
+            }
+
+            pticica.osvezi();//gravitacija (ptica ubrzava na dole)
+            pticica.crtaj();//iscrtavanje ptice
+
+            //iscrtavanje frejma i potom njegovo brisanje
+            prozor.display();
+            prozor.clear();
         }
-
-        pticica.osvezi();//gravitacija (ptica ubrzava na dole)
-        pticica.crtaj();//iscrtavanje ptice
-
-        //iscrtavanje frejma i potom njegovo brisanje
-        prozor.display();
-        prozor.clear();
     }
 	return 0;
 }
