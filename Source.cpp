@@ -2,10 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <stdlib.h>
 #include "stub.h"
 #include "ptica.h"
-bool rezultati(sf::RenderWindow *prozor, sf::Font font,int skor)
+void rezultati(sf::RenderWindow *prozor, sf::Font font,int skor,int m,std::string kom[35],int bk,std::string trk[20],int bt)
 {
     sf::RectangleShape k;
     k.setSize(sf::Vector2f(prozor->getSize().x * 0.6f, prozor->getSize().y * 0.6f));
@@ -13,34 +14,50 @@ bool rezultati(sf::RenderWindow *prozor, sf::Font font,int skor)
     k.setFillColor(sf::Color(1, 1, 1, 200));
     prozor->draw(k);
 
-    sf::Text kraj, osvojeno, tip, komentar;
+    sf::Text kraj, osvojeno, tip, ispkom;
     kraj.setFont(font);
-    kraj.setCharacterSize(35);
-    kraj.setPosition(0.4f * prozor->getSize().x, 0.25f * prozor->getSize().y);
+    kraj.setCharacterSize(40);
+    kraj.setPosition(0.38f * prozor->getSize().x, 0.25f * prozor->getSize().y);
     kraj.setString("KRAJ IGRE");
     prozor->draw(kraj); 
 
     osvojeno.setFont(font);
-    osvojeno.setCharacterSize(20);
-    osvojeno.setPosition(0.3f * prozor->getSize().x, 0.35f * prozor->getSize().y);
+    osvojeno.setCharacterSize(30);
+    osvojeno.setPosition(0.25f * prozor->getSize().x, 0.35f * prozor->getSize().y);
     std::stringstream ss;
-    ss << "Osvojili ste ukupno " << skor << " poena.";
+    ss << "Osvojili ste ukupno " << skor << " poena.\nRekord: "<<(skor<m)*m+(skor>m)*skor;
     osvojeno.setString(ss.str().c_str());
     prozor->draw(osvojeno);
 
     tip.setFont(font);
-    tip.setCharacterSize(15);
+    tip.setCharacterSize(25);
+    tip.setString(trk[rand() % bt]);
+    tip.setPosition(0.22f * prozor->getSize().x, 0.7f * prozor->getSize().y);
+    prozor->draw(tip);
 
-    komentar.setFont(font);
-    komentar.setCharacterSize(20);
+    int d;
+    if (m == 0)d = 1;
+    else if (skor > m)d = 2;
+    else if (m - skor < 5)d = 3;
+    else if (skor == 8)d = 4;
+    else if (skor == 10)d = 5;
+    else if (skor < 16)d = 10 + rand() % 6;
+    else if (skor < 35)d = 6 + rand() % 4;
+    else d = 16 + rand() % 9;
+    ispkom.setFont(font);
+    ispkom.setCharacterSize(28);
+    ispkom.setString(kom[d]);
+    ispkom.setPosition(0.29f * prozor->getSize().x, 0.5f * prozor->getSize().y);
+    prozor->draw(ispkom);
 }
 
-void poeni(sf::RenderWindow *prozor,sf::Font font, int skor)
+void poeni(sf::RenderWindow *prozor,sf::Font font, int skor,int m)
 {
     sf::Text ispis;
     ispis.setFont(font);
     ispis.setCharacterSize(30);
-    //ispis.setColor(sf::Color::Yellow);
+    if(m<skor)
+        ispis.setFillColor(sf::Color::Red);
     ispis.setOutlineColor(sf::Color::Black);
     ispis.setOutlineThickness(2);
     std::stringstream ss;
@@ -53,18 +70,41 @@ void poeni(sf::RenderWindow *prozor,sf::Font font, int skor)
 
 int main()
 {
+    srand(time(NULL));
     sf::RenderWindow prozor(sf::VideoMode(800, 600), "fljepi brd!",sf::Style::Close);
     prozor.setFramerateLimit(120);
-
+    
     sf::Texture texture1,texture2;
     sf::Sprite sprite1,sprite2;
-    if (!(texture1.loadFromFile("resource/pozadina.png")))
+    if (!(texture1.loadFromFile("resource/pozadina.png")))//ucitavanje pozadine
         std::cout << "Cannot load image1"<<std::endl;
-    if (!(texture2.loadFromFile("resource/ptica.png")))
+    if (!(texture2.loadFromFile("resource/ptica.png")))//ucitavanje slike ptice
         std::cout << "Cannot load image2" << std::endl;
     sf::Font font;
-    if (!font.loadFromFile("resource/sansation.ttf"))
+    if (!font.loadFromFile("resource/sansation.ttf"))//ucitavanje fonta
         return EXIT_FAILURE;
+    FILE* najbolji;
+    int max, brk, brt;
+    if (fopen_s(&najbolji, "resource/najbolji.txt", "r"))
+    {
+        printf("Ne postoji najbolji\nupisujem 0");
+        max = 0;
+    }
+    else
+    {
+        fscanf_s(najbolji, "%d", &max);
+        fclose(najbolji);
+    }
+    std::ifstream komentari("resource/komentari.txt"),trikovi("resource/tips.txt");
+    std::string komentar[35], trik[20];
+    komentari >> brk;
+    trikovi >> brt;
+    std::cout << max<<"  "<< brk<<"  " << brt;
+    for (int i = 0; std::getline(komentari, komentar[i]) && i<brk ;i++)
+        std::cout << komentar[i] << "\n";
+    for (int i = 0; std::getline(trikovi, trik[i]) && i < brt; i++)
+        std::cout << trik[i] << "\n";
+
     texture2.getSize().x;
     sprite1.setTexture(texture1);
     sprite2.setTexture(texture2);
@@ -119,8 +159,16 @@ int main()
             }
             printf("\nSkor: %d\n", brojac);
             if (zivot == 0)
-                rezultati(&prozor,font,brojac);
-            poeni(&prozor, font, brojac);
+            {
+                rezultati(&prozor,font,brojac,max,komentar,brk,trik,brt);//ispisuje endscreen
+                if (brojac > max)
+                {
+                    fopen_s(&najbolji, "resource/najbolji.txt", "w");
+                    fprintf(najbolji, "%d", brojac);
+                    fclose(najbolji);
+                }
+            }
+            poeni(&prozor, font, brojac,max);//ispisuje br. preskocenih stubova u gornjem desnom uglu
 
             pticica.osvezi();//gravitacija (ptica ubrzava na dole)
             pticica.crtaj();//iscrtavanje ptice

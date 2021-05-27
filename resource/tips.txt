@@ -1,10 +1,11 @@
-Klikni SPACE da skocis.
-Igra nema kraj.
+10
+        Klikni SPACE da skocis.
+            Igra nema kraj.
 Skor je broj stubova koje si preskocio.
 Koriscena je SFML biblioteka za grafiku.
-Budi blize donjem stubu nego gornjem.
-Ako udaris u stub onda je kraj.
-Igra nije savrsena ne nerviraj se.
-Marko i Vlada su pravili ovu igru.
-Na vreme kreni da ucis za kontrolni.
+ Budi blize donjem stubu nego gornjem.
+    Ako udaris u stub onda je kraj.
+  Igra nije savrsena ne nerviraj se.
+  Marko i Vlada su pravili ovu igru.
+ Na vreme kreni da ucis za kontrolni.
 Ima samo 5 stubova, ali se vrte u krug.
