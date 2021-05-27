@@ -48,8 +48,14 @@ void stub::pomeri()
     }
 }
 
-bool stub::provera(sf::Vector2f kordinate, sf::Vector2f dimenzije,double ugao)
+bool stub::provera(sf::Vector2f kordinate, sf::Vector2f dimenzije,double ugao,int &br)
 {
+    if (x + debljina == kordinate.x)
+    {
+        printf("skor stonks\n");
+        //putchar(7);
+        br++;
+    }
     if ((x > kordinate.x && x < kordinate.x + dimenzije.x) || (x + debljina > kordinate.x && x + debljina < kordinate.x + dimenzije.x))
     {
         if ((kordinate.y < (visina * prozor->getSize().y / 100.f)))

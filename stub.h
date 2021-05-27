@@ -1,4 +1,4 @@
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 class stub
 {
     float visina, otvor, debljina;
@@ -12,5 +12,5 @@ public:
     void podesi(double visina, double otvor);
     void crtaj();
     void pomeri();
-    bool provera(sf::Vector2f kordinate,sf::Vector2f dimenzije,double ugao);
+    bool provera(sf::Vector2f kordinate,sf::Vector2f dimenzije,double ugao,int &br);
 };
