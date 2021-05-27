@@ -153,6 +153,18 @@
     <ClInclude Include="ptica.h" />
     <ClInclude Include="stub.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\pozadina.png" />
+    <Image Include="resource\ptica.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resource\sansation.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="resource\komentari.txt" />
+    <Text Include="resource\najbolji.txt" />
+    <Text Include="resource\tips.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

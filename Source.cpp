@@ -71,7 +71,7 @@ void poeni(sf::RenderWindow *prozor,sf::Font font, int skor,int m)
 int main()
 {
     srand(time(NULL));
-    sf::RenderWindow prozor(sf::VideoMode(800, 600), "fljepi brd!",sf::Style::Close);
+    sf::RenderWindow prozor(sf::VideoMode(800, 600), "Flappy Bird",sf::Style::Close);
     prozor.setFramerateLimit(120);
     
     sf::Texture texture1,texture2;
@@ -157,7 +157,6 @@ int main()
                     zivot = 0;
                 s[i].pomeri();
             }
-            printf("\nSkor: %d\n", brojac);
             if (zivot == 0)
             {
                 rezultati(&prozor,font,brojac,max,komentar,brk,trik,brt);//ispisuje endscreen
