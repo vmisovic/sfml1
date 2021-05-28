@@ -50,9 +50,6 @@
     <Text Include="resource\komentari.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="resource\najbolji.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="resource\tips.txt">
       <Filter>Resource Files</Filter>
     </Text>

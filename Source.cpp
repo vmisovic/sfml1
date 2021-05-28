@@ -26,12 +26,13 @@ void rezultati(sf::RenderWindow *prozor, sf::Font font,int skor,int m,std::strin
     osvojeno.setPosition(0.25f * prozor->getSize().x, 0.35f * prozor->getSize().y);
     std::stringstream ss;
     ss << "Osvojili ste ukupno " << skor << " poena.\nRekord: "<<(skor<m)*m+(skor>m)*skor;
+    
     osvojeno.setString(ss.str().c_str());
     prozor->draw(osvojeno);
 
     tip.setFont(font);
     tip.setCharacterSize(25);
-    tip.setString(trk[rand() % bt]);
+    tip.setString(trk[1+rand() % bt]);
     tip.setPosition(0.22f * prozor->getSize().x, 0.7f * prozor->getSize().y);
     prozor->draw(tip);
 
@@ -47,6 +48,7 @@ void rezultati(sf::RenderWindow *prozor, sf::Font font,int skor,int m,std::strin
     ispkom.setFont(font);
     ispkom.setCharacterSize(28);
     ispkom.setString(kom[d]);
+    std::cout << kom[d] << "\n";
     ispkom.setPosition(0.29f * prozor->getSize().x, 0.5f * prozor->getSize().y);
     prozor->draw(ispkom);
 }
@@ -87,7 +89,7 @@ int main()
     int max, brk, brt;
     if (fopen_s(&najbolji, "resource/najbolji.txt", "r"))
     {
-        printf("Ne postoji najbolji\nupisujem 0");
+        printf("Ne postoji najbolji upisujem 0\n");
         max = 0;
     }
     else
@@ -99,12 +101,9 @@ int main()
     std::string komentar[35], trik[20];
     komentari >> brk;
     trikovi >> brt;
-    std::cout << max<<"  "<< brk<<"  " << brt;
-    for (int i = 0; std::getline(komentari, komentar[i]) && i<brk ;i++)
-        std::cout << komentar[i] << "\n";
-    for (int i = 0; std::getline(trikovi, trik[i]) && i < brt; i++)
-        std::cout << trik[i] << "\n";
-
+    std::cout <<"Rekord: "<< max<<" Br komentara: "<< brk<<" Br hintova: " << brt<<"\n";
+    for (int i = 0; std::getline(komentari, komentar[i]) && i < brk; i++);
+    for (int i = 0; std::getline(trikovi, trik[i]) && i < brt; i++);
     texture2.getSize().x;
     sprite1.setTexture(texture1);
     sprite2.setTexture(texture2);
@@ -124,7 +123,6 @@ int main()
     }
 
     int brojac = 0;//ukupan skor je broj stubova koje je igrac preskocio
-    printf("Brojac: %d\n", brojac);
     while (prozor.isOpen())
     {
         sf::Event evnt;
@@ -139,9 +137,11 @@ int main()
             case sf::Event::TextEntered:
                 if (evnt.text.unicode < 128)
                 {
-                    printf("%d", evnt.text.unicode);
                     if (evnt.text.unicode == ' ')
+                    {
                         pticica.skok();
+                        printf("Skok\n");
+                    }
                 }
                 
             }
@@ -157,14 +157,17 @@ int main()
                     zivot = 0;
                 s[i].pomeri();
             }
+
             if (zivot == 0)
             {
+                printf("Kraj igre - %d poeni\n", brojac);
                 rezultati(&prozor,font,brojac,max,komentar,brk,trik,brt);//ispisuje endscreen
                 if (brojac > max)
                 {
                     fopen_s(&najbolji, "resource/najbolji.txt", "w");
                     fprintf(najbolji, "%d", brojac);
                     fclose(najbolji);
+                    printf("Upisan novi rekord.\n");
                 }
             }
             poeni(&prozor, font, brojac,max);//ispisuje br. preskocenih stubova u gornjem desnom uglu

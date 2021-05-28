@@ -47,7 +47,7 @@ void ptica::skok()
 
 sf::Vector2f ptica::getSize()
 {
-	return sf::Vector2f(100,71);
+	return sf::Vector2f(52,40);
 }
 
 sf::Vector2f ptica::getPosition()

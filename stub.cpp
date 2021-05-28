@@ -1,8 +1,8 @@
 #include "stub.h"
 stub::stub()
 {
-    otvor = 50.f;
-    visina = rand() % 40 + 5.f;
+    otvor = 30.f;
+    visina = rand() % 60 + 5.f;
     debljina = 40;
     dx = 1;
     boja[0] = sf::Color::Yellow;
@@ -44,7 +44,7 @@ void stub::pomeri()
     if (x <= -50)
     {
         x = prozor->getSize().x + 150;
-        podesi(rand()%40+5.f, 50.f);
+        podesi(rand()%60+5.f, 30.f);
     }
 }
 
@@ -52,8 +52,7 @@ bool stub::provera(sf::Vector2f kordinate, sf::Vector2f dimenzije,double ugao,in
 {
     if (x + debljina == kordinate.x)
     {
-        printf("skor stonks\n");
-        //putchar(7);
+        printf("Preskocen stub\n");
         br++;
     }
     if ((x > kordinate.x && x < kordinate.x + dimenzije.x) || (x + debljina > kordinate.x && x + debljina < kordinate.x + dimenzije.x))
