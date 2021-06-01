@@ -86,15 +86,16 @@ int main()
     if (!font.loadFromFile("resource/sansation.ttf"))//ucitavanje fonta
         return EXIT_FAILURE;
     FILE* najbolji;
+
     int max, brk, brt;
-    if (fopen_s(&najbolji, "resource/najbolji.txt", "r"))
+    if ((najbolji=fopen("resource/najbolji.txt","r"))==NULL)
     {
         printf("Ne postoji najbolji upisujem 0\n");
         max = 0;
     }
     else
     {
-        fscanf_s(najbolji, "%d", &max);
+        fscanf(najbolji, "%d", &max);
         fclose(najbolji);
     }
     std::ifstream komentari("resource/komentari.txt"),trikovi("resource/tips.txt");
@@ -104,7 +105,6 @@ int main()
     std::cout <<"Rekord: "<< max<<" Br komentara: "<< brk<<" Br hintova: " << brt<<"\n";
     for (int i = 0; std::getline(komentari, komentar[i]) && i < brk; i++);
     for (int i = 0; std::getline(trikovi, trik[i]) && i < brt; i++);
-    texture2.getSize().x;
     sprite1.setTexture(texture1);
     sprite2.setTexture(texture2);
     ptica pticica(&sprite2,&prozor);//objekat klase ptica nazvan je pticica
@@ -131,20 +131,22 @@ int main()
             prozor.clear(); 
             switch (evnt.type)
             {
-            case sf::Event::Closed:
-                prozor.close();
-                break;
-            case sf::Event::TextEntered:
-                if (evnt.text.unicode < 128)
-                {
-                    if (evnt.text.unicode == ' ')
-                    {
-                        pticica.skok();
-                        printf("Skok\n");
-                    }
-                }
-                
-            }
+		case sf::Event::Closed:
+		    prozor.close();
+		    break;
+		case sf::Event::TextEntered:
+		    if (evnt.text.unicode < 128)
+		    {
+			if (evnt.text.unicode == ' ')
+			{
+			    pticica.skok();
+			    printf("Skok\n");
+			}
+		    }
+		    break;
+		default:
+		    break;
+	    }
         }
         if (zivot)
         {
@@ -164,7 +166,7 @@ int main()
                 rezultati(&prozor,font,brojac,max,komentar,brk,trik,brt);//ispisuje endscreen
                 if (brojac > max)
                 {
-                    fopen_s(&najbolji, "resource/najbolji.txt", "w");
+                    najbolji=fopen("resource/najbolji.txt", "w");
                     fprintf(najbolji, "%d", brojac);
                     fclose(najbolji);
                     printf("Upisan novi rekord.\n");

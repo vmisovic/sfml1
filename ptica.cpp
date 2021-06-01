@@ -33,11 +33,9 @@ double ptica::ugao()
 void ptica::crtaj()
 {
 	sprite->setPosition(x, visina);
-	if(visina > 20)
-	sprite->rotate(ugao());
+	if(visina > 20) sprite->rotate(ugao());
 	prozor->draw(*sprite);
-	if (visina > 20)
-	sprite->rotate(-ugao());
+	if (visina > 20) sprite->rotate(-ugao());
 }
 
 void ptica::skok()
