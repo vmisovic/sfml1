@@ -19,7 +19,8 @@ Igra je izbalansirana do tebe je.
          Probaj opet.
          Nisi najboli.
    Ima mnogo boljih od tebe.
-Aleksa nije jedini programer ovde.
+Aleksa je jedini programer ovde.
  **** **** ******** * **********
-Najboli projekat iz programiranja.
-https://github.com/vmisovic/sfml1
+	*** **** ****
+Najboli projekat iz programiranja:
+https://github.com/aleksav013/sfml-rpg
