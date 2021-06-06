@@ -6,3 +6,4 @@ Projekat iz Programiranja i programskih jezika
 Na projektu radili
 Vladimir Misović
 Marko Radosavljević
+Aleksa Vučković
