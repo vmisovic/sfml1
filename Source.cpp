@@ -109,7 +109,7 @@ int main()
     sprite2.setTexture(texture2);
     ptica pticica(&sprite2,&prozor);//objekat klase ptica nazvan je pticica
 
-    bool zivot=1;//da li je pricica jos uvek ziva
+    bool zivot=1;//da li je pticica jos uvek ziva
     stub s[5];//deklarisemo pet stubova (posto ce se vrteti u krug, nije nam potrebno vise) random imaju random visinu
 
     for (int i = 0; i < 5; i++)
@@ -117,7 +117,7 @@ int main()
         s[i].povezi_grafiku(&prozor, prozor.getSize().x + i * 200);
         /*
         povezivanje grafike, i inicijalizacija x kordinate
-        na pocetku se svi stubovi nalaze van prozora kako bi dali igracu nekoliko sekundi prednsti
+        na pocetku se svi stubovi nalaze van prozora kako bi dali igracu nekoliko sekundi prednosti
         nalaze se na istom rastojanju od 200px
         */
     }

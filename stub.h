@@ -1,3 +1,6 @@
+#ifndef STUB_H
+#define STUB_H
+
 #include <SFML/Graphics.hpp>
 class stub
 {
@@ -14,3 +17,5 @@ public:
     void pomeri();
     bool provera(sf::Vector2f kordinate,sf::Vector2f dimenzije,double ugao,int &br);
 };
+
+#endif

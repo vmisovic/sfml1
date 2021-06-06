@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PTICA_H
+#define PTICA_H
+
 #include <SFML/Graphics.hpp>
 class ptica
 {
@@ -19,3 +21,4 @@ public:
 	sf::Vector2f getPosition();
 };
 
+#endif

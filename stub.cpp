@@ -34,10 +34,8 @@ void stub::crtaj()
     pravougaonik[1].setPosition(sf::Vector2f(x - 4, visina / 100.f * prozor->getSize().y - debljina));
     pravougaonik[2].setPosition(sf::Vector2f(x, (visina + otvor) / 100.f * prozor->getSize().y));
     pravougaonik[3].setPosition(sf::Vector2f(x - 4, (visina + otvor) / 100.f * prozor->getSize().y));
-    for(int i=0;i<4;i++)
-        prozor->draw(pravougaonik[i]);
+    for(int i=0;i<4;i++) prozor->draw(pravougaonik[i]);
 }
-
 void stub::pomeri()
 {
     x -= dx;
@@ -47,7 +45,6 @@ void stub::pomeri()
         podesi(rand()%60+5.f, 30.f);
     }
 }
-
 bool stub::provera(sf::Vector2f kordinate, sf::Vector2f dimenzije,double ugao,int &br)
 {
     if (x + debljina == kordinate.x)

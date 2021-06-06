@@ -5,7 +5,6 @@ ptica::ptica(sf::Sprite* sprite1, sf::RenderWindow* prozor1)
 	sprite = sprite1;
 	prozor = prozor1;
 }
-
 void ptica::osvezi()
 {
 	visina += brzina;
@@ -22,14 +21,12 @@ void ptica::osvezi()
 	}
 	if (brzina < -100)
 		brzina = -100;
-	
 }
 
 double ptica::ugao()
 {
 	return brzina * 5.0f;
 }
-
 void ptica::crtaj()
 {
 	sprite->setPosition(x, visina);
@@ -37,19 +34,15 @@ void ptica::crtaj()
 	prozor->draw(*sprite);
 	if (visina > 20) sprite->rotate(-ugao());
 }
-
 void ptica::skok()
 {
 	brzina = brzina_skoka;
 }
-
 sf::Vector2f ptica::getSize()
 {
 	return sf::Vector2f(52,40);
 }
-
 sf::Vector2f ptica::getPosition()
 {
 	return sf::Vector2f(x,visina);
 }
-
