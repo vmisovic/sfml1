@@ -14,6 +14,7 @@ Projekat iz Programiranja i programskih jezika
 
 ## LINUX
 install sfml and g++
+
 git clone repository:
 ```
 git clone https://www.https://github.com/vmisovic/sfml1/
