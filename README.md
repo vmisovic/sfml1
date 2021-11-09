@@ -11,3 +11,22 @@ Projekat iz Programiranja i programskih jezika
 * Vladimir Misović
 * Marko Radosavljević
 * Aleksa Vučković
+
+LINUX
+install sfml and g++
+git clone repository:
+```
+git clone https://www.https://github.com/vmisovic/sfml1/
+```
+change directory:
+```
+cd sfml1
+```
+compile:
+```
+g++ -std=c++14 -g -O2 -Wall -o sfml1.out *.cpp -I SFML-2.5.1\include -L SFML-2.5.1\lib -lsfml-graphics -lsfml-window -lsfml-system
+```
+run:
+```
+./sfml1.out
+```
