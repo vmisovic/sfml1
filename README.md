@@ -12,7 +12,7 @@ Projekat iz Programiranja i programskih jezika
 * Marko Radosavljević
 * Aleksa Vučković
 
-##LINUX
+## LINUX
 install sfml and g++
 git clone repository:
 ```
