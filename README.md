@@ -17,7 +17,7 @@ install sfml and g++
 
 git clone repository:
 ```
-git clone https://www.https://github.com/vmisovic/sfml1/
+git clone https://github.com/vmisovic/sfml1/
 ```
 change directory:
 ```
