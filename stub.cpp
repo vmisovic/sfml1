@@ -41,7 +41,7 @@ void stub::pomeri()
     x -= dx;
     if (x <= -50)
     {
-        x = prozor->getSize().x + 150;
+        x = prozor->getSize().x + (prozor->getSize().x / 4.f) - 50;
         podesi(rand()%60+5.f, 30.f);
     }
 }

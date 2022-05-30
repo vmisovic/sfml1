@@ -114,7 +114,7 @@ int main()
 
     for (int i = 0; i < 5; i++)
     {
-        s[i].povezi_grafiku(&prozor, prozor.getSize().x + i * 200);
+        s[i].povezi_grafiku(&prozor, prozor.getSize().x + i * (prozor.getSize().x / 4.f));
         /*
         povezivanje grafike, i inicijalizacija x kordinate
         na pocetku se svi stubovi nalaze van prozora kako bi dali igracu nekoliko sekundi prednosti
@@ -144,12 +144,24 @@ int main()
 			}
 		    }
 		    break;
+		case sf::Event::KeyPressed:
+			if (evnt.key.code == sf::Keyboard::Q || evnt.key.code == sf::Keyboard::Escape)
+				prozor.close();
+			if (evnt.key.code == sf::Keyboard::Enter && !zivot)
+			{
+				for (int i = 0; i < 5; i++)
+					s[i].povezi_grafiku(&prozor, prozor.getSize().x + i * (prozor.getSize().x / 4.f));
+				zivot = 1;
+				brojac = 0;
+			}
+		    break;
 		default:
 		    break;
 	    }
         }
         if (zivot)
         {
+            sprite1.setScale(prozor.getSize().x/800.f,prozor.getSize().y/600.f);
             prozor.draw(sprite1);//pozadina se crta na pocetku
 
             for (int i = 0; i < 5; i++)//pet stubova koji se vrte u krug i iscrtavanje
